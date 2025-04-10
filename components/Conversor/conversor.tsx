@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { View,Text, Button } from "react-native";
+import { View,Text, Button, TouchableOpacity } from "react-native";
 import styles from "./style";
 import { Picker } from '@react-native-picker/picker';
 import { TextInput } from "react-native";
@@ -44,7 +44,6 @@ export default function Conversor(props : any)
 
     const setOptions = () => {
         getKeysValues(templateUrl).then((result) => setKeys(result[0] as string[])).catch((error) => console.error(error));
-        console.log(Keys);
     }
 
     const convert = () => {
@@ -80,7 +79,7 @@ export default function Conversor(props : any)
     return (
         <View>
             <View style={styles.Container}>
-                <Text>Selecione a moeda a ser convertida:</Text>
+                <Text style={styles.Text}>Selecione a moeda a ser convertida:</Text>
                 <Picker selectedValue={""} onValueChange={(itemValue) => setCurrencyIn(itemValue)}>
                     <Picker.Item label="Selecione..." value="" />
                     {
@@ -89,7 +88,7 @@ export default function Conversor(props : any)
                         ))
                     }
                 </Picker>
-                <Text>Selecione a moeda de conversão:</Text>
+                <Text style={styles.Text}>Selecione a moeda de conversão:</Text>
                 <Picker selectedValue={""} onValueChange={(itemValue) => setCurrencyOut(itemValue)}>
                     <Picker.Item label="Selecione..." value="" />
                     {
@@ -98,9 +97,10 @@ export default function Conversor(props : any)
                         ))
                     }
                 </Picker>
-                <TextInput keyboardType="numeric" placeholder="Coloque o valor a ser convertido"
-                    onChangeText={value => props.setConversionValue([currencyIn,Number(value)])} />
-                <Button title="Converter" onPress={() => convert()}></Button>
+                <TextInput style={styles.input} keyboardType="numeric" placeholder="Coloque o valor a ser convertido"
+                    onChangeText={value => props.setConversionValue([currencyIn, Number(value)])} />
+                
+                <TouchableOpacity onPress={() => convert()} style={styles.btn}><Text style={styles.Text}>Converter</Text></TouchableOpacity>
             </View>
         </View>
     );

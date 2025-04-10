@@ -1,6 +1,6 @@
 import React,{useMemo} from "react";
-import { View, Text, Button } from "react-native";
-
+import { View, Text, Button, TouchableOpacity } from "react-native";
+import styles from "./styles";
 export default function Result(props: any) {
 
     let AllLocales = [
@@ -25,16 +25,16 @@ export default function Result(props: any) {
     },[props.ResultValue, props.ConversionValue]);
 
     return (
-        <View>
+        <View style={styles.Container}>
             {
                 Array.isArray(props.resultValue) && props.resultValue.length !== 0
                     ?
-                    <Text>{newConvertedValues}</Text>
+                    <Text style={styles.Text}>{newConvertedValues+'\n'}</Text>
                     :
                 <>
                 </>
             }
-            <Button onPress={() => props.setShowResult(false)} title="Voltar" />
+            <TouchableOpacity onPress={() => props.setShowResult(false)} style={styles.btn}><Text style={styles.Text}>Voltar</Text></TouchableOpacity>
         </View>
     );
 }

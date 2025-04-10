@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import React,{useState} from "react";
 import Conversor from "@/components/Conversor/conversor";
 import Result from "@/components/Result/Result";
@@ -10,7 +10,8 @@ export default function Index() {
   const [ConvertedValues,setConvertedValues] = useState<Array<string>>([]);
 
   return (
-    <View
+    <ImageBackground
+      source={require("../media/image/fundoconv.jpg")} // Caminho da imagem
       style={{
         flex: 1,
         justifyContent: "center",
@@ -25,6 +26,6 @@ export default function Index() {
           <Result resultValue={resultValue} setShowResult={setShowResult} ConversionValue={ConversionValue}
           setConvertedValues={setConvertedValues} ConvertedValues={ConvertedValues} />
       }      
-    </View>
+    </ImageBackground>
   );
 }
